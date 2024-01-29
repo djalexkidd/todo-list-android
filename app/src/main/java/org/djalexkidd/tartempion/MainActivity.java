@@ -19,9 +19,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.welcomeMessageTextView = findViewById(R.id.welcome_message);
-        this.welcomeMessageTextView.setText(
-                getResources().getText(R.string.hello_world) + " Solacroup"
-        );
     }
 
 }
