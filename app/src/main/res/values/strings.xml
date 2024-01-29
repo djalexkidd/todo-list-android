@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Tartempion</string>
+    <string name="hello_world">Bienvenue!</string>
 </resources>
