@@ -5,18 +5,27 @@
     android:layout_height="match_parent"
     tools:context=".view.TasksFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/tasks_text_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/hello_blank_fragment" />
 
+    <TextView
+        android:id="@+id/tasks_text_view_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_blank_fragment"
+        android:layout_below="@id/tasks_text_view"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_task_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
-        android:src="@android:drawable/ic_input_add" />
+        android:src="@android:drawable/ic_input_add"
+        android:visibility="visible"/>
 
 </RelativeLayout>

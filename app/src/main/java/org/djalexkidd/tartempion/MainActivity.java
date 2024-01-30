@@ -1,21 +1,27 @@
 package org.djalexkidd.tartempion;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
+
+    private ArrayList<String> tasks = new ArrayList<>();
+
+    public ArrayList<String> getTasks() {
+        return tasks;
+    }
+
+    public void addTask(String task) {
+        this.tasks.add(task);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-
 }
