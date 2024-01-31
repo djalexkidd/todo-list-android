@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,12 +8,26 @@
         android:id="@+id/task_title_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Placeholder" />
+        android:text="Placeholder"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"/>
 
-    <Button
+    <TextView
+        android:id="@+id/task_date_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1970-01-01"
+        android:layout_below="@id/task_title_text_view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <CheckBox
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Fait" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"/>
 
-</LinearLayout>
+</RelativeLayout>

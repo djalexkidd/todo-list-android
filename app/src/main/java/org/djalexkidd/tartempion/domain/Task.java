@@ -1,5 +1,6 @@
 package org.djalexkidd.tartempion.domain;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Task {
@@ -13,6 +14,14 @@ public class Task {
 
     public Date getDate() {
         return date;
+    }
+
+    public String getDateAsString() {
+        // Définir le format de date souhaité
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy HH:mm");
+
+        // Utiliser le format pour convertir la date en chaîne de caractères
+        return sdf.format(date);
     }
 
     public void setDate(Date date) {

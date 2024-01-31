@@ -37,6 +37,8 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         }
         TextView taskTitle = convertView.findViewById(R.id.task_title_text_view);
         taskTitle.setText(task.getTitle());
+        TextView taskDate = convertView.findViewById(R.id.task_date_text_view);
+        taskDate.setText(task.getDateAsString());
         return convertView;
     }
 }
