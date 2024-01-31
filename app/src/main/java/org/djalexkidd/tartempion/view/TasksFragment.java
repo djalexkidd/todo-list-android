@@ -11,12 +11,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
 
 import org.djalexkidd.tartempion.MainActivity;
 import org.djalexkidd.tartempion.R;
@@ -51,46 +50,42 @@ public class TasksFragment extends Fragment {
         );
     }
 
-    private TextView textView;
+    private ListView listView;
+    private ArrayAdapter<String> tasksAdapter;
     private FloatingActionButton floatingActionButton;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         // Init variables
-        textView = view.findViewById(R.id.tasks_text_view);
+        listView = view.findViewById(R.id.tasks_list_view);
         floatingActionButton = view.findViewById(R.id.add_task_button);
         // Alter
-        notifyAndUpdateTask("Cours Android");
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                textView.setVisibility(
-//                        textView.getVisibility() == View.GONE ?
-//                                View.VISIBLE :
-//                                View.GONE
-//                );
-                openDialogAddTask();
-            }
-        });
+        ((MainActivity) requireActivity()).addTask("Cours Android");
+        floatingActionButton.setOnClickListener(view1 -> openDialogAddTask());
+        tasksAdapter = new ArrayAdapter<>(
+                requireActivity(),
+                R.layout.task_item,
+                R.id.task_title_text_view,
+                ((MainActivity) requireActivity()).getTasks()
+        );
+        listView.setAdapter(tasksAdapter);
     }
 
     private void openDialogAddTask() {
         EditText editText = new EditText(getContext());
         AlertDialog dialog = new AlertDialog
-                .Builder(getContext())
+                .Builder(requireActivity())
                 .setTitle("Ajouter une tâche")
                 .setMessage("Que souhaitez-vous faire ?")
                 .setView(editText)
-                .setPositiveButton("Ajouter", (dialogInterface, i) -> {
-                    notifyAndUpdateTask(editText.getText().toString());
+                .setPositiveButton("Ajouter",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        tasksAdapter.add(editText.getText().toString());
+                    }
                 })
                 .setNegativeButton("Annuler", null)
                 .create();
         dialog.show();
-    }
-
-    private void notifyAndUpdateTask(String task) {
-        ((MainActivity) getActivity()).addTask(task);
-        textView.setText(((MainActivity) getActivity()).getTasks().toString());
     }
 }
