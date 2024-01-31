@@ -51,7 +51,8 @@ public class TasksFragment extends Fragment {
     }
 
     private ListView listView;
-    private ArrayAdapter<String> tasksAdapter;
+    //    private ArrayAdapter<String> tasksAdapter;
+    private TaskAdapter taskAdapter;
     private FloatingActionButton floatingActionButton;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -62,13 +63,18 @@ public class TasksFragment extends Fragment {
         // Alter
         ((MainActivity) requireActivity()).addTask("Cours Android");
         floatingActionButton.setOnClickListener(view1 -> openDialogAddTask());
-        tasksAdapter = new ArrayAdapter<>(
+//        tasksAdapter = new ArrayAdapter<>(
+//                requireActivity(),
+//                R.layout.task_item,
+//                R.id.task_title_text_view,
+//                ((MainActivity) requireActivity()).getTasks()
+//        );
+        taskAdapter = new TaskAdapter(
                 requireActivity(),
                 R.layout.task_item,
-                R.id.task_title_text_view,
                 ((MainActivity) requireActivity()).getTasks()
         );
-        listView.setAdapter(tasksAdapter);
+        listView.setAdapter(taskAdapter);
     }
 
     private void openDialogAddTask() {
@@ -81,7 +87,9 @@ public class TasksFragment extends Fragment {
                 .setPositiveButton("Ajouter",new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        tasksAdapter.add(editText.getText().toString());
+//                        tasksAdapter.add(editText.getText().toString());
+                        ((MainActivity) requireActivity()).addTask(editText.getText().toString());
+                        taskAdapter.notifyDataSetChanged();
                     }
                 })
                 .setNegativeButton("Annuler", null)

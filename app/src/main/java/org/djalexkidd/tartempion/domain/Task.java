@@ -7,7 +7,7 @@ public class Task {
     private String title;
     private Category category;
     private Priority priority;
-    private Boolean done;
+    private Boolean done = false;
     private Date dateStart;
     private Date dateEnd;
 
@@ -67,12 +67,27 @@ public class Task {
         this.dateEnd = dateEnd;
     }
 
-    public Task(Date date, String title, Category category, Priority priority, Boolean done, Date dateStart, Date dateEnd) {
-        this.date = date;
+    // Ne pas utiliser, uniquement pour les tests
+    public Task() {
+    }
+
+    public Task(String title, Category category, Priority priority) {
         this.title = title;
-        this.category = category;
-        this.priority = priority;
-        this.done = done;
+        this.date = new Date();
+        if (category == null) {
+            this.category = Category.PERSONNEL;
+        } else {
+            this.category = category;
+        }
+        if (priority == null) {
+            this.priority = Priority.LOW;
+        } else {
+            this.priority = priority;
+        }
+    }
+
+    public Task(Date date, String title, Category category, Priority priority, Date dateStart, Date dateEnd) {
+        this(title, category, priority);
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
     }
