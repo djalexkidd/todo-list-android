@@ -21,9 +21,14 @@ public class MainActivity extends AppCompatActivity {
         this.tasks.add(new Task(task, null, null));
     }
 
+    public void updateTask(int taskPosition, Task task) {
+        tasks.set(taskPosition, task);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.addTask("Cours Android");
     }
 }

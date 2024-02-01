@@ -16,14 +16,6 @@ public class Task {
         return date;
     }
 
-    public String getDateAsString() {
-        // Définir le format de date souhaité
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyyy HH:mm");
-
-        // Utiliser le format pour convertir la date en chaîne de caractères
-        return sdf.format(date);
-    }
-
     public void setDate(Date date) {
         this.date = date;
     }
@@ -99,5 +91,18 @@ public class Task {
         this(title, category, priority);
         this.dateStart = dateStart;
         this.dateEnd = dateEnd;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "date=" + date +
+                ", title='" + title + '\'' +
+                ", category=" + category +
+                ", priority=" + priority +
+                ", done=" + done +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
+                '}';
     }
 }

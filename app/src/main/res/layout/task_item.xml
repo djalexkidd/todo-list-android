@@ -1,34 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
+    android:id="@+id/task_container"
+    android:padding="10dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/task_title_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Placeholder"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"/>
+        android:textSize="20sp"
+        android:text="Placeholder Title"/>
 
     <TextView
         android:id="@+id/task_date_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="1970-01-01"
+        android:layout_marginTop="5dp"
         android:layout_below="@id/task_title_text_view"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:textSize="14sp"
+        android:text="Placeholder Date"/>
 
     <CheckBox
-        android:id="@+id/button"
+        android:id="@+id/task_done_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"/>
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

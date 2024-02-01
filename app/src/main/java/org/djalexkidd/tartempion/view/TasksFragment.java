@@ -7,6 +7,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,23 +63,16 @@ public class TasksFragment extends Fragment {
         listView = view.findViewById(R.id.tasks_list_view);
         floatingActionButton = view.findViewById(R.id.add_task_button);
         // Alter
-        // Loop for test
-        //for(int i = 0; i < 50; i++) {
-            ((MainActivity) requireActivity()).addTask("Cours Android");
-        //}
         floatingActionButton.setOnClickListener(view1 -> openDialogAddTask());
-//        tasksAdapter = new ArrayAdapter<>(
-//                requireActivity(),
-//                R.layout.task_item,
-//                R.id.task_title_text_view,
-//                ((MainActivity) requireActivity()).getTasks()
-//        );
         taskAdapter = new TaskAdapter(
                 requireActivity(),
                 R.layout.task_item,
                 ((MainActivity) requireActivity()).getTasks()
         );
         listView.setAdapter(taskAdapter);
+        taskAdapter.setTaskAdapterOnClickListener((taskPosition) -> {
+            navigateToTaskForm(taskPosition);
+        });
     }
 
     private void openDialogAddTask() {
@@ -95,8 +90,23 @@ public class TasksFragment extends Fragment {
                         taskAdapter.notifyDataSetChanged();
                     }
                 })
+                .setNeutralButton("Personnalisé", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        navigateToTaskForm(null);
+                    }
+                })
                 .setNegativeButton("Annuler", null)
                 .create();
         dialog.show();
+    }
+    private void navigateToTaskForm(Integer taskPosition) {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        TaskFormFragment taskDetailFragment = TaskFormFragment.newInstance(taskPosition);
+        fragmentTransaction.replace(R.id.fragment_container_view, taskDetailFragment);
+        fragmentTransaction.setReorderingAllowed(true);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
