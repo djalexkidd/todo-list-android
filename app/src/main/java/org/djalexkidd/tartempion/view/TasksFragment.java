@@ -61,7 +61,10 @@ public class TasksFragment extends Fragment {
         listView = view.findViewById(R.id.tasks_list_view);
         floatingActionButton = view.findViewById(R.id.add_task_button);
         // Alter
-        ((MainActivity) requireActivity()).addTask("Cours Android");
+        // Loop for test
+        //for(int i = 0; i < 50; i++) {
+            ((MainActivity) requireActivity()).addTask("Cours Android");
+        //}
         floatingActionButton.setOnClickListener(view1 -> openDialogAddTask());
 //        tasksAdapter = new ArrayAdapter<>(
 //                requireActivity(),
